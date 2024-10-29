@@ -1,10 +1,11 @@
 /*
-This file contains the C code to perform the four basic arithmetic operations
-such as addition, subtraction, multiplication, and division.
-
-File: arithmetic_operations.c
-Author: Biranchi Kulesika
-Date: 2 Sep, 2023
+*This C program performs the four basic arithmetic operations
+*such as addition, subtraction, multiplication, and division
+*
+*Author: Biranchi Kulesika
+*Date: 2 Sep, 2023
+*Assignment No.: 01
+*Question No.: 01
 */
 
 #include <stdio.h>
