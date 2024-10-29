@@ -1,9 +1,11 @@
 /*
-This file contains the C code to find the perimeter and area of a circle based on the radius entered by the user.
-
-File: circle_area_perimeter.c
-Author: Biranchi Kulesika
-Date: 2 Sep, 2023
+*This C program calculates the area and perimeter of a circle
+*based on the radius entered by the user.
+*
+*Author: Biranchi Kulesika
+*Date: 2 Sep, 2023
+*Assignment No.: 01
+*Question No.: 02
 */
 
 #include <stdio.h>
