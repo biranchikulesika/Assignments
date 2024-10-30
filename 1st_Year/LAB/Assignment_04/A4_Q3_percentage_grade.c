@@ -36,7 +36,7 @@ int main()
         printf("Chemistry: ");
         fflush(stdin);
         scanf("%f", &chem);
-        if (chem <= 100)
+        if (chem <= 100 && chem >= 0)
         {
             break;
         }
@@ -49,7 +49,7 @@ int main()
         printf("Math: ");
         fflush(stdin);
         scanf("%f", &math);
-        if (math <= 100)
+        if (math <= 100 && math >= 0)
         {
             break;
         }
@@ -62,7 +62,7 @@ int main()
         printf("Biology: ");
         fflush(stdin);
         scanf("%f", &bio);
-        if (bio <= 100)
+        if (bio <= 100 && bio >= 0)
         {
             break;
         }
@@ -75,7 +75,7 @@ int main()
         printf("Computer Science: ");
         fflush(stdin);
         scanf("%f", &comp);
-        if (comp <= 100)
+        if (comp <= 100 && comp >= 0)
         {
             break;
         }
