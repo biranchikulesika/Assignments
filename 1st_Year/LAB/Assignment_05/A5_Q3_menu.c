@@ -9,7 +9,7 @@
  *Author: Biranchi Kulesika
  *Date: 24 Sep, 2023
  *Assignment No.: 05
- *Question No.: 01
+ *Question No.: 03
  */
 
 #include <stdio.h>
