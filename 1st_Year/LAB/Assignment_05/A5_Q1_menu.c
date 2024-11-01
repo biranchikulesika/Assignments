@@ -1,23 +1,3 @@
-/*
- *This C program calculates the gross salary of an employee
- *based on their salary and its corresponding TA and DA
- *
- *Author: Biranchi Kulesika
- *Date: 23 Sep, 2023
- *Assignment No.: 04
- *Question No.: 04
- */
-/*
-
-Write a C program to create a menu such a
-i) add two integers
-ii) check a character is alphabet or not
-iii)check whether a character as digit or not
-iv)exit
-
-and implement the menu given.
-*/
-
 /*This C program create a list of actions to perfrom such as
  *1)add two integers
  *2)check a character is alphabet or not
