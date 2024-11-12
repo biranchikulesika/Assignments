@@ -11,16 +11,6 @@
  *Question No.: 01
  */
 
-/*
-A C program to input a character at runtime and check whether it is an alphabet,
-digit, or special character. If the character is an alphabet, then check whether
-it as a vowel or consonant and uppercase or lowercase.
-
-File: charactercheck.c
-Author: Biranchi Kulesika
-Date: 23 Sep, 2024
-*/
-
 #include <ctype.h>
 #include <stdio.h>
 
