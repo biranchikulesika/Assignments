@@ -21,7 +21,7 @@ int main()
     {
         for (c = 1; c <= r; c++)
         {
-            printf("%d ", number);
+            printf("%5d", number); //added %5d to space between numbers in a row
             number++;
         }
         printf("\n");
