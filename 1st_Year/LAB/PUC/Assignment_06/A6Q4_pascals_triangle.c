@@ -1,4 +1,4 @@
-/*This r program is to print a Pascal's triangle
+/*This C program is to print a Pascal's triangle
 ===========================================================
 
                             1
@@ -86,4 +86,5 @@ int main()
 }
 
 // NOTES:
-// %7lld instead of %lld to format the values for alignment
+// I have used %7lld instead of %lld 
+// to format the values for alignment
