@@ -1,3 +1,13 @@
+/*
+ *This C program prints the perfect numbers present between two numbers
+ *entered by the user at run-time input.
+ *
+ *Author: Biranchi Kulesika
+ *Date:
+ *Assignment No.: 07
+ *Question No.: 02
+ */
+
 #include <stdio.h>
 #include <stdbool.h>
 
