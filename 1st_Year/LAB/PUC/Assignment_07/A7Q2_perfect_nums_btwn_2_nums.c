@@ -1,11 +1,14 @@
-/*
- *This C program prints the perfect numbers present between two numbers
- *entered by the user at run-time input.
- *
- *Author: Biranchi Kulesika
- *Date:
- *Assignment No.: 07
+/*Assignment No.: 07
  *Question No.: 02
+
+ * Program: Perfect Numbers Finder
+ * Description: This program finds all the perfect numbers between two numbers
+ * entered by the user as runtime input.
+
+ * Author: Biranchi Kulesika
+ * Date: November 25, 2024
+ * Version: 1.0
+ *
  */
 
 #include <stdio.h>
