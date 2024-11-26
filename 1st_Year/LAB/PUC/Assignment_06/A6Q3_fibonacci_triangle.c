@@ -1,12 +1,29 @@
 /*
- * This C program prints a Fibonacci triangle.
- * Reference: https://en.wikipedia.org/wiki/Fibonacci_sequence
- *
- * Author: Biranchi Kulesika
- * Date:
- * Assignment No.: 06
- * Question No.: 03
- */
+*Assignment No.: 06
+*Question No.: 03
+*Date: [empty]
+
+* Program: Fibonacci Triangle Printer
+* Description: This program prints a triangle using the Fibonacci Series
+* where the triangle should only have  the same number in a coloumn.
+* the number of rows are entered by the user.
+
+============================================================
+
+1
+1   2
+1   2   3
+1   2   3   5
+1   2   3   5   8
+1   2   3   5   8   13
+
+Reference: https://en.wikipedia.org/wiki/Fibonacci_sequence
+============================================================
+
+* Author: Biranchi Kulesika
+* Date: November 26, 2024
+* Version: 1.2
+*/
 
 #include <stdio.h>
 
