@@ -66,7 +66,6 @@ int main()
         printf("Enter the number of terms in the series (1 to 20): ");
         fflush(stdin);
         scanf("%d", &terms);
-        printf("%d", terms);
     } while (terms < 1 || terms > 20);
 
     // Converting degrees to radians
