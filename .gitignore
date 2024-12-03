@@ -453,3 +453,4 @@ Module.symvers
 Mkfile.old
 dkms.conf
 .vscode/tasks.json
+tempCodeRunnerFile.c
