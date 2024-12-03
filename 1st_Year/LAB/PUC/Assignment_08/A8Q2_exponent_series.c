@@ -1,3 +1,22 @@
+/*
+*Assignment No.: 08
+*Question No.: 02
+*Date: [empty]
+
+* Program: Exponent Series Evaluator
+* Description: Thid C program evaluates the following series.
+
+    f(x) = 1 + x + x^2 + x^3 + x^4 + ... upto n terms,
+
+* where n is entered by the user as run-time input.
+
+============================================================
+
+* Author: Biranchi Kulesika
+* Date: December 2, 2024
+* Version: 1.2
+*/
+
 #include <stdio.h>
 #include <math.h>
 
@@ -61,9 +80,9 @@ int main()
         sum += pow(x, i);
     }
 
-    printf("\nThe sum of the series 1 + x + x^2 + x^3 + x^4 + ... up to %d terms is: %lld\n\n", n, sum);
+    printf("\nThe result of the series 1 + x + x^2 + x^3 + x^4 + ... up to %d terms is: %lld", n, sum);
 
-    printf("\n===Code Execution Successful====\n\n");
+    printf("\n\n===Code Execution Successful====\n\n");
 
     return 0;
 }
