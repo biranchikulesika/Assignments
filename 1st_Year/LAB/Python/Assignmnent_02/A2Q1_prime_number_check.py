@@ -1,3 +1,18 @@
+"""
+*Assignment No.: 02
+*Question No.: 01
+*Date: 12 Nov, 2024
+
+* Program: Prime Number Checker
+* Description: This python program takes a number as input
+* and checks prints whether it is a prime number or not.
+
+* Author: Biranchi Kulesika
+* Date: December 7, 2024
+* Version: 1.0
+"""
+
+
 import math
 
 
