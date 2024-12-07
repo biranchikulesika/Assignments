@@ -47,5 +47,4 @@ for attempts in range(max_tries):
         if attempts == 2:
             print("The maximum number of attempts reached.\n")
         else:
-          print("Try again.")
-
+            print("Try again.")
