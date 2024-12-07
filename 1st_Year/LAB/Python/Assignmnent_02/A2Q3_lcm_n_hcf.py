@@ -8,7 +8,7 @@
 * and find its HCF an LCM using user define function
 
 * Author: Biranchi Kulesika
-* Date: December 7, 2024
+* Date: December 8, 2024
 * Version: 1.0
 """
 
