@@ -4,7 +4,7 @@
 *Date: 12 Nov, 2024
 
 * Program: Find LCM and HCF
-* Description: This python program takes two numbers as run-time input 
+* Description: This python program takes two numbers as run-time input
 * and find its HCF an LCM using user define function
 
 * Author: Biranchi Kulesika
@@ -28,8 +28,20 @@ def lcm(a, b):
     return l
 
 
-num1 = int(input("\nEnter the first number: "))
-num2 = int(input("Enter the second number: "))
+maxretries = 3
 
-print(f"\nHCF of ({num1}, {num2}) is {int(hcf(num1, num2))}")
-print(f"LCM of ({num1}, {num2}) is {int(lcm(num1, num2))}\n")
+for attempts in range(maxretries):
+    try:
+        num1 = int(input("\nEnter the first number: "))
+        num2 = int(input("Enter the second number: "))
+
+        print(f"\nHCF of ({num1}, {num2}) is {int(hcf(num1, num2))}")
+        print(f"LCM of ({num1}, {num2}) is {int(lcm(num1, num2))}\n")
+        break
+
+    except ValueError:
+        print("\nInvalid number entered.")
+        if attempts == 2:
+            print("The maximum number of attempts reached.\n")
+        else:
+            print("Try again.")
