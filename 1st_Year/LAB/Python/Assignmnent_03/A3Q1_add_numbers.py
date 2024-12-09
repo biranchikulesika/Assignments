@@ -1,5 +1,4 @@
 """
-* Question: 
 * Assignment No.: 3
 * Question No.: 1
 * Date: [empty]
