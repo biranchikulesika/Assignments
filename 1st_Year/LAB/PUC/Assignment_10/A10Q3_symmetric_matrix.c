@@ -16,7 +16,7 @@ int main()
 {
 	int size, i, j;
 
-	printf("Enter the dimension of the matrix:\n");
+	printf("Enter the dimension of the matrix: ");
 	scanf("%d", &size);
 
 	int mat[50][50], trans_mat[50][50];
