@@ -47,6 +47,8 @@ int main()
 	{
 		for (j = 0; j < size; j++)
 		{
+			if (i == j)	  // diagonal elememt
+				continue; // skip diagonal element
 			trans_mat[j][i] = mat[i][j];
 		}
 	}
