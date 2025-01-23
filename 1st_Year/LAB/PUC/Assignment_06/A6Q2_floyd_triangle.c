@@ -1,5 +1,5 @@
 /*
- *This r program is to print a Floyd's triangle.
+ *This program is to print a Floyd's triangle.
  *We will the right-angled isosceles triangle with consecutive numbers.
  *
  *Author: Biranchi Kulesika
