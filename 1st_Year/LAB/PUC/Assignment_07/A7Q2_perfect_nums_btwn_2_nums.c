@@ -59,16 +59,18 @@ int main()
         {
             printf("%d", i);
             printf("\n");
-            found = 1;
+            found++;
         }
     }
 
     if (found == 0)
     {
-        printf("No perfect numbers found in the given range!!!\n");
+        printf("\nNo perfect numbers found in the given range!!!\n");
     }
-
-    printf("\n=======Code execution completed=======");
+    else
+    {
+        printf("\nNumber of perfect numbers: %d\n", found);
+    }
 
     return 0;
 }
