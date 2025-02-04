@@ -42,7 +42,7 @@ int main()
 
 	for (i = 0; i < n; i++)
 	{
-		printf("Enter details for student %d", i + 1);
+		printf("\nEnter details for student %d", i + 1);
 		printf("\nRoll No: ");
 		fgets(student.roll_no, sizeof(student.roll_no), stdin);
 
