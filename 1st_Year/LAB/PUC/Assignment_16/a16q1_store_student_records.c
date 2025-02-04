@@ -20,7 +20,7 @@ typedef struct
 {
 	char roll_no[10];
 	char name[50];
-	float marks;
+	char course[50];
 } Student;
 
 int main()
@@ -52,6 +52,8 @@ int main()
 			student.roll_no[len - 1] = '\0';
 		}
 
+		fflush(stdin);
+
 		printf("Name: ");
 		fgets(student.name, sizeof(student.name), stdin);
 
@@ -61,11 +63,16 @@ int main()
 			student.name[len - 1] = '\0';
 		}
 
-		printf("Marks: ");
-		scanf("%f", &student.marks);
-		getchar();
+		fflush(stdin);
 
-		fprintf(file, "Roll No: %s\nName: %s\nMarks: %.2f\n\n", student.roll_no, student.name, student.marks);
+		printf("Course: ");
+		fgets(student.course, sizeof(student.course), stdin);
+		if (student.course[len - 1] == '\n')
+		{
+			student.course[len - 1] = '\0';
+		}
+
+		fprintf(file, "Roll No: %s\nName: %s\nCourse: %s\n\n", student.roll_no, student.name, student.course);
 	}
 
 	fclose(file);
