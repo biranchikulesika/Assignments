@@ -397,3 +397,4 @@ FodyWeavers.xsd
 
 # VS Code by Biranchi
 *.exe
+*.o
