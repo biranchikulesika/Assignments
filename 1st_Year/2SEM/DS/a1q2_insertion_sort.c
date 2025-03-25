@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void insertionSort(int *arr, int n)
+void insertionSort(float *arr, int n)
 {
 	for (int i = 1; i < n; i++)
 	{
@@ -30,11 +30,11 @@ void insertionSort(int *arr, int n)
 	}
 }
 
-void printArray(int *arr, int arrSize)
+void printArray(float *arr, int arrSize)
 {
 	for (int i = 0; i < arrSize; i++)
 	{
-		printf("%d ", arr[i]);
+		printf("%.2f ", arr[i]);
 	}
 	printf("\n");
 }
@@ -51,7 +51,7 @@ int main()
 		return 1;
 	}
 
-	int *arr = (int *)malloc(n * sizeof(int));
+	float *arr = (float *)malloc(n * sizeof(float));
 	if (!arr)
 	{
 		printf("Memory allocation failed!\n");
@@ -61,7 +61,7 @@ int main()
 	printf("Enter %d elements separated by space:\n", n);
 	for (int i = 0; i < n; i++)
 	{
-		scanf("%d", &arr[i]);
+		scanf("%f", &arr[i]);
 	}
 
 	printf("The entered array is:\n");
