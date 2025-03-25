@@ -26,7 +26,7 @@ void selectionSort(float *arr, int arrSize)
 				min = j;
 			}
 		}
-		int temp = arr[min];
+		float temp = arr[min];
 		arr[min] = arr[i];
 		arr[i] = temp;
 	}
