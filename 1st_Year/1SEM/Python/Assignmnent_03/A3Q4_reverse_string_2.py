@@ -10,10 +10,10 @@
 * Author: Biranchi Kulesika
 * Date: 10 Dec, 2024
 """
-#Incomplete Program
-#Incomplete Program
 
 string = input("\nEnter a sentence to reverse it: ")
 print(f"\nThe entered string is: {string}")
 reverse = string[::-1]
+
+print(f"Tehe original string is: {string}")
 print(f"\nThe reversed string is: {reverse}\n")
