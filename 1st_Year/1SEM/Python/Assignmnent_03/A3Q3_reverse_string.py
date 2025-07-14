@@ -1,7 +1,7 @@
 """
 * Assignment No.: 03
 * Question No.: 03
-* Date: [empty]
+* Date: 13 Nov, 2024
 
 * Program Name: Reverse a String
 * Description: This python program takes a string as run-time input

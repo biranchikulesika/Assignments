@@ -1,7 +1,7 @@
 """
 * Assignment No.: 3
 * Question No.: 1
-* Date: [empty]
+* Date: 13 Nov, 2024
 
 * Program Name: Sum Calculator
 * Description: This python program takes multiple numbers
