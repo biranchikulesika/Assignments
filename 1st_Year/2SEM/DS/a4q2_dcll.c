@@ -64,15 +64,16 @@ void MoveFirstToLast(DCLL **head)
 	DCLL *first = *head;
 	DCLL *last = first->prev;
 
-	first->next->prev = last;
-	last->next = first->next;
+	// Remove first node from its position
+	*head = first->next;
+	(*head)->prev = last;
+	last->next = *head;
 
+	// Insert first node after last (i.e., at end)
 	first->next = *head;
 	first->prev = last;
-	(*head)->prev = first;
 	last->next = first;
-
-	*head = first->next;
+	(*head)->prev = first;
 }
 
 void PrintList(DCLL *head)
