@@ -4,7 +4,7 @@
  * Date: 11 July, 2025
  *
  * Program: Double Circular Linked List
- * Description: This program creates a single circular linked list
+ * Description: This program creates a double circular linked list
  * containing int data type
  * and delete the first node and insert same node at last position.
 
@@ -59,21 +59,10 @@ void InsertAtEnd(DCLL **head, int value)
 void MoveFirstToLast(DCLL **head)
 {
 	if (*head == NULL || (*head)->next == *head)
+	{
 		return;
-
-	DCLL *first = *head;
-	DCLL *last = first->prev;
-
-	// Remove first node from its position
-	*head = first->next;
-	(*head)->prev = last;
-	last->next = *head;
-
-	// Insert first node after last (i.e., at end)
-	first->next = *head;
-	first->prev = last;
-	last->next = first;
-	(*head)->prev = first;
+	}
+	*head = (*head)->next;
 }
 
 void PrintList(DCLL *head)
@@ -91,6 +80,28 @@ void PrintList(DCLL *head)
 		temp = temp->next;
 	} while (temp != head);
 	printf("(back to head)\n");
+}
+
+void FreeList(DCLL **head)
+{
+	if (*head == NULL)
+	{
+		return;
+	}
+
+	DCLL *last = (*head)->prev;
+	DCLL *current = *head;
+	DCLL *temp;
+
+	last->next = NULL;
+
+	while (current != NULL)
+	{
+		temp = current->next;
+		free(current);
+		current = temp;
+	}
+	*head = NULL;
 }
 
 int main()
@@ -115,6 +126,8 @@ int main()
 
 	printf("\nAfter moving first node to last:\n");
 	PrintList(head);
+
+	FreeList(&head);
 
 	return 0;
 }
