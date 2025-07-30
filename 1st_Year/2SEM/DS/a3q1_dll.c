@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct Node
 {
@@ -91,6 +92,7 @@ void DeleteAtPosition(DLL **head, int pos)
 	if (!temp)
 	{
 		printf("Position not found.\n");
+
 		return;
 	}
 
@@ -100,6 +102,20 @@ void DeleteAtPosition(DLL **head, int pos)
 		temp->next->prev = temp->prev;
 
 	free(temp);
+}
+
+void FreeList(DLL *head)
+{
+	DLL *temp;
+
+	while (head != NULL)
+	{
+
+		temp = head->next;
+		free(head);
+		head = temp;
+	}
+
 }
 
 void PrintList(DLL *head)
@@ -126,15 +142,7 @@ int main()
 	printf("Enter a string: ");
 	fgets(str, sizeof(str), stdin);
 
-	int len = 0;
-	while (str[len] != '\0')
-		len++;
-	if (len > 0 && str[len - 1] == '\n')
-	{
-		str[len - 1] = '\0';
-		len--;
-	}
-
+	str[strcspn(str, "\n")] = '\0';
 	for (int i = 0; str[i] != '\0'; i++)
 	{
 		InsertAtPosition(&head, str[i], i + 1);
@@ -178,5 +186,6 @@ int main()
 		}
 	} while (choice != 4);
 
+	FreeList(head);
 	return 0;
 }
