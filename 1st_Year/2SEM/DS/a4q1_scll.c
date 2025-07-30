@@ -73,6 +73,31 @@ void PrintList(CSLL *head)
 	printf("(back to head)\n");
 }
 
+void FreeList(CSLL **head)
+{
+	if (*head == NULL)
+	{
+		return;
+	}
+
+	CSLL *current = *head;
+	CSLL *last = *head;
+
+	while (last->next != *head)
+	{
+		last = last->next;
+	}
+	last->next = NULL;
+
+	while (current != NULL)
+	{
+		CSLL *temp = current->next;
+		free(current);
+		current = temp;
+	}
+	*head = NULL;
+}
+
 int main()
 {
 	CSLL *head = NULL;
@@ -93,14 +118,13 @@ int main()
 	PrintList(head);
 
 	printf("\nEnter a float value to insert at end: ");
-	while (getchar() != '\n')
-		;
-
-	scanf("%f", &value);
+	scanf(" %f", &value);
 	InsertAtEnd(&head, value);
 
 	printf("\nList after insertion:\n");
 	PrintList(head);
+
+	FreeList(&head);
 
 	return 0;
 }
