@@ -4,12 +4,11 @@
 *Date: [empty]
 
 * Program: Count Occurence in a array
-* Description: This C program counts the no. of
-* occurances a key has in the array of natural numbers.
+* Description: This C program counts the number of
+* occurrences a key has in an array of natural numbers.
 
 * Author: Biranchi Kulesika
 * Date: December 5, 2024
-* Version: 1.0
 */
 
 #include <stdio.h>
@@ -70,13 +69,11 @@ int main()
             if (retry_count >= 3)
             {
                 printf("\nProgram terminated due to multiple wrong inputs.\n\n");
-                return 0; // Terminate after 3 invalid attempts
+                return 0;
             }
             printf("\nInvalid input!\nPlease enter a number >= 1: ");
         }
     }
-
-    // Created integer with dynamic memory allocation
 
     int *arr = (int *)malloc(n * sizeof(int));
     if (arr == NULL)
@@ -85,19 +82,15 @@ int main()
         return 1;
     }
 
-    // Prompts the user to enter elements in the array
     printf("Enter the elements of the array: \n");
     for (int i = 0; i < n; i++)
     {
-        fflush(stdin);
         scanf("%d", &arr[i]);
     }
 
-    // Prints the array elements using user defined function
     printf("\nArray contents: ");
     displayArray(arr, n);
 
-    // Finds number of occurences in the array using user define functions
     findOccurrences(arr, n);
 
     free(arr);
