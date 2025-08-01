@@ -17,25 +17,14 @@
 #include <stdio.h>
 #include <math.h>
 
-long double factorial(int n)
-{
-    long double fact = 1;
-    for (int i = 1; i <= n; i++)
-    {
-        fact *= i;
-    }
-    return fact;
-}
-
 long double expo_series(int x, int terms)
 {
-    long double result = 0;
+    long double result = 1.0L;
+    long double term = 1.0L;
 
-    for (int i = 0; i < terms; i++)
+    for (int i = 1; i < terms; i++)
     {
-        long double fact = factorial(i);
-        long double term = pow(x, i) / fact;
-
+        term = term * x / i;
         result += term;
     }
     return result;
@@ -45,11 +34,11 @@ int getMaxTerms(int x)
 {
     if (x <= 5)
     {
-        return 15;
+        return 20;
     }
     else if (x <= 15)
     {
-        return 10;
+        return 15;
     }
     else if (x < 35)
     {
@@ -88,7 +77,7 @@ int main()
             if (retry_count >= 3)
             {
                 printf("\nProgram terminated due to multiple wrong inputs.\n\n");
-                return 0; // Terminate after 3 invalid attempts
+                return 0;
             }
             printf("Invalid input! Please enter a number between 1 and %d: ", max_terms);
         }
