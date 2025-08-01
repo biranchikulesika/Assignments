@@ -21,7 +21,8 @@ dataset = {
 dframe = pd.DataFrame(dataset)
 print(dframe)
 
-print("\nSelecting a single column ('Name'):")
+print("
+Selecting a single column ('Name'):")
 print(dframe["Name"])
 
 print("\nSelecting multiple columns ('Name' and 'Dist'):")

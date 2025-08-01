@@ -1,16 +1,11 @@
-"""
-* Assignment No.: 01
-* Question No.: 01
-
-* Program: BMI Calculator
-* Description: This python program defines a Person class to calculate
-* and categorize the Body Mass Index (BMI) based on weight and height.
-
-* Author: Biranchi Kulesika
-* Date: 22 July, 2025
-"""
-
-
+'''
+Description: This Python program defines a Person class to calculate
+and categorize the Body Mass Index (BMI) based on weight and height.
+Author: Biranchi Kulesika
+Date: 22 July, 2025
+Assignment No.: 01
+Question No.: 01
+'''
 class Person:
     def __init__(self, name, age, weight_kg, height_ft):
         self.name = name
@@ -19,23 +14,19 @@ class Person:
         self.height = height_ft
 
     def bmi(self):
-        # 1 foot = 0.3048 meters
         height_m = self.height * 0.3048
-
         if height_m <= 0:
             raise ValueError("Height cannot be zero")
-        bmi = self.weight / (height_m**2)
-        return round(bmi, 2)
+        bmi_value = self.weight / (height_m**2)
+        return round(bmi_value, 2)
 
     def get_bmi_result(self):
-
-        bmi = self.bmi()
-
-        if bmi < 18.5:
+        bmi_value = self.bmi()
+        if bmi_value < 18.5:
             return "Underweight"
-        elif 18.5 <= bmi < 24.9:
+        elif 18.5 <= bmi_value < 24.9:
             return "Healthy"
-        elif 24.9 <= bmi < 29.9:
+        elif 24.9 <= bmi_value < 29.9:
             return "Overweight"
         else:
             return "Obese"
@@ -48,7 +39,5 @@ class Person:
         print(f"BMI: {self.bmi()}")
         print(f"Remark: {self.get_bmi_result()}")
 
-
-# Input the data
 p1 = Person("Biranchi", 20, 49.5, 5.5)
 p1.display_info()

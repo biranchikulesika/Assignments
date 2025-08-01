@@ -16,14 +16,12 @@ arr = np.array([[10, 20, 30], [40, 50, 60]])
 
 print("Original Array:\n", arr)
 
-# 1. ndim: Returns the number of array dimensions.
-print(f"\nNumber of dimensions (ndim): {arr.ndim}")
+print(f"
+Number of dimensions (ndim): {arr.ndim}")
 
-# 2. shape: Returns a tuple of array dimensions.
-print(f"Shape of the array (shape): {arr.shape}")
+print(f"
+Shape of the array (shape): {arr.shape}")
 
-# 3. size: Returns the total number of elements in the array.
 print(f"Total number of elements (size): {arr.size}")
 
-# 4. dtype: Returns the data type of the elements in the array.
 print(f"Data type of the array (dtype): {arr.dtype}")
