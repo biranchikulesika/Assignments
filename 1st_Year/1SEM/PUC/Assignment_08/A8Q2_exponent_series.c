@@ -4,7 +4,7 @@
 *Date: [empty]
 
 * Program: Exponent Series Evaluator
-* Description: Thid C program evaluates the following series.
+* Description: This C program evaluates the following series.
 
     f(x) = 1 + x + x^2 + x^3 + x^4 + ... upto n terms,
 
@@ -52,32 +52,32 @@ int main()
 
     printf("Enter the number of terms (1-%d): ", max_terms);
 
-    int l = 1;
-    int count = 0;
-    while (l == 1)
+    int retry_count = 0;
+    while (1)
     {
         scanf("%d", &n);
 
         if (n <= max_terms && n >= 1)
         {
-            l = 0;
+            break;
         }
         else
         {
-            if (count == 3)
+            retry_count++;
+            if (retry_count >= 3)
             {
                 printf("\nProgram terminated due to multiple wrong inputs.\n\n");
                 return 0;
             }
             printf("\nCannot calculate for %d terms due to risk of data overflow: ", n);
             printf("\nPlease re-enter the number of terms within 1 - %d: ", max_terms);
-            count++;
         }
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        sum += pow(x, i);
+    long long term = 1; // First term is x^0 = 1
+    for (int i = 0; i < n; i++) {
+        sum += term;
+        term *= x;
     }
 
     printf("\nThe result of the series 1 + x + x^2 + x^3 + x^4 + ... up to %d terms is: %lld", n, sum);
