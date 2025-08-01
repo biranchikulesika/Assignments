@@ -1,5 +1,5 @@
 /*
-*This is a C program that checks if a number is an Armstrong number or not using pow()
+*This is a C program that checks if a number is an Armstrong number or not.
 *
  *Author: Biranchi Kulesika
  *Date:
@@ -10,15 +10,26 @@
 #include <stdio.h>
 #include <math.h>
 
+long long power(int base, int exp)
+{
+    long long res = 1;
+    for (int i = 0; i < exp; i++)
+    {
+        res *= base;
+    }
+    return res;
+}
+
 int main()
 {
 
-    int num, dg, dg_count = 0, temp, sum = 0;
+    long long num, temp, sum = 0;
+    int dg, dg_count = 0;
     printf("Enter a number: ");
-    scanf("%d", &num);
+    scanf("%lld", &num);
 
     temp = num;
-    
+
     while (temp != 0)
     {
         temp /= 10;
@@ -30,34 +41,18 @@ int main()
     while (temp != 0)
     {
         dg = temp % 10;
-        sum = pow(dg, dg_count) + sum;
+        sum += power(dg, dg_count);
         temp /= 10;
     }
 
     if (sum == num)
     {
-        printf("\n%d is a amstrong number.", num);
+        printf("\n%lld is an Armstrong number.", num);
     }
     else
     {
-        printf("\n%d is not a armstrong number.", num);
+        printf("\n%lld is not an Armstrong number.", num);
     }
 
     return 0;
 }
-
-/*NOTE:
-*This program may give wrong outputs in vs code due to an error in the MingW C compiler.
-*This program works wells in Linux and replit
-
-**List of few Armstrong numbers***
-1.  153
-2.  370
-3.  371
-4.  1634
-5.  927227
-6.  1741725
-7.  4210818
-8.  9800817
-9.  9926315
-*/
