@@ -1,51 +1,66 @@
-/*
- *A C program to calculate the electricity bill based on the given criteria.
+/**
+ * @file a4q5_electricity_bill_calculator.c
+ * @author Biranchi Kulesika
+ * @date 23 Sep 2023
+ * @brief Calculates an electricity bill based on a tiered tariff system.
  *
- *The first 50 units costs ₹0.5 per unit.
- *The first 100 units costs ₹1.5 per unit.
- *The first 100 units costs ₹4.5 per unit.
- *Above 250 units costs ₹7.5 per unit.
- *
- *Author: Biranchi Kulesika
- *Date: 23 Sep, 2023
- *Assignment No.: 04
- *Question No.: 04
+ * This program calculates a total electricity bill based on the number of
+ * units consumed. The tariff is structured in slabs:
+ * - First 50 units:    Rs. 0.50/unit
+ * - Next 100 units:    Rs. 1.50/unit
+ * - Next 100 units:    Rs. 4.50/unit
+ * - Above 250 units:   Rs. 7.50/unit
+ * An additional 20% surcharge is applied to the total base cost.
  */
 
 #include <stdio.h>
 
 int main()
 {
+  int consumed_units;
+  double base_cost, surcharge_amount, total_bill;
 
-  int units;
-  float cost, surcharge, fbill;
-
-  printf("\n\nEnter the total number of units consumed: ");
-  scanf("%d", &units);
-
-  if (units <= 50)
+  printf("Enter the total number of units consumed: ");
+  if (scanf("%d", &consumed_units) != 1)
   {
-    cost = units * 0.5;
+    printf("Invalid input. Please enter a valid integer for units.\n");
+    return 1;
   }
-  else if (units <= 150)
+
+  if (consumed_units < 0)
   {
-    cost = 25 + (units - 50) * 1.5;
+    printf("Consumed units cannot be negative. Please enter a positive value.\n");
+    return 1;
   }
-  else if (units <= 250)
+
+  if (consumed_units <= 50)
   {
-    cost = 175 + (units - 150) * 4.5;
+    base_cost = consumed_units * 0.50;
+  }
+  else if (consumed_units <= 150)
+  {
+    base_cost = (50 * 0.50) + (consumed_units - 50) * 1.50;
+  }
+  else if (consumed_units <= 250)
+  {
+    base_cost = (50 * 0.50) + (100 * 1.50) + (consumed_units - 150) * 4.50;
   }
   else
   {
-    cost = 625 + (units - 250) * 7.5;
+    base_cost = (50 * 0.50) + (100 * 1.50) + (100 * 4.50) + (consumed_units - 250) * 7.50;
   }
 
-  surcharge = .2 * cost;
-  fbill = cost + surcharge;
+  surcharge_amount = base_cost * 0.20;
+  total_bill = base_cost + surcharge_amount;
 
-  printf("\nCost before surcharge: %.2f", cost);
-  printf("\nSurcharge: %.2f", surcharge);
-  printf("\nThe final bill: %.2f", fbill);
+  printf("\n--- Electricity Bill Summary ---\n");
+  printf("Units Consumed: %d\n", consumed_units);
+  printf("--------------------------------\n");
+  printf("Base Cost:          %10.2f\n", base_cost);
+  printf("Surcharge (20%%):    %10.2f\n", surcharge_amount);
+  printf("--------------------------------\n");
+  printf("Total Bill Amount:  %10.2f\n", total_bill);
+  printf("--------------------------------\n\n");
 
   return 0;
 }

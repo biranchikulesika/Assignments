@@ -1,58 +1,71 @@
-/*
-*This is a C program that checks if a number is an Armstrong number or not.
-*
- *Author: Biranchi Kulesika
- *Date:
- *Assignment No.: 06
- *Question No.: 01
+/**
+ * @file a6q1_armstrong_number_check.c
+ * @author Biranchi Kulesika
+ * @date 26 Nov 2023
+ * @brief Checks if a given integer is an Armstrong number.
+ *
+ * An Armstrong number (or narcissistic number) is a number that is the sum
+ * of its own digits each raised to the power of the number of digits.
+ * For example, 153 is an Armstrong number because 1^3 + 5^3 + 3^3 = 153.
+ * This program prompts the user for a number, validates the input, and
+ * then determines and displays whether it is an Armstrong number.
  */
 
 #include <stdio.h>
-#include <math.h>
 
-long long power(int base, int exp)
+long long calculate_power(int base, int exponent)
 {
-    long long res = 1;
-    for (int i = 0; i < exp; i++)
+    long long result = 1;
+    for (int i = 0; i < exponent; i++)
     {
-        res *= base;
+        result *= base;
     }
-    return res;
+    return result;
+}
+int isArmstrong(int number)
+{
+    if (number == 0)
+        return 1;
+    if (number < 0)
+        return 0;
+
+    int digit_count = 0;
+    int temp = number;
+    long long sum = 0;
+
+    while (temp)
+    {
+        temp /= 10;
+        digit_count++;
+    }
+
+    temp = number;
+    while (temp)
+    {
+        int digit = temp % 10;
+        sum += calculate_power(digit, digit_count);
+        temp /= 10;
+    }
+
+    return (sum == number) ? 1 : 0;
 }
 
 int main()
 {
+    int input_number;
 
-    long long num, temp, sum = 0;
-    int dg, dg_count = 0;
-    printf("Enter a number: ");
-    scanf("%lld", &num);
-
-    temp = num;
-
-    while (temp != 0)
+    printf("Enter a positive integer to check for Armstrong number: ");
+    if (scanf("%d", &input_number) != 1 || input_number < 0)
     {
-        temp /= 10;
-        dg_count++;
+        printf("Error: Invalid input. Please enter a non-negative integer.\n");
+        return 1;
     }
 
-    temp = num;
-
-    while (temp != 0)
-    {
-        dg = temp % 10;
-        sum += power(dg, dg_count);
-        temp /= 10;
-    }
-
-    if (sum == num)
-    {
-        printf("\n%lld is an Armstrong number.", num);
-    }
-    else
-    {
-        printf("\n%lld is not an Armstrong number.", num);
-    }
+    printf("\n--- Armstrong Number Analysis ---\n");
+    printf("Input Number : %d\n", input_number);
+    printf("Result       : %d is %s Armstrong number\n",
+           input_number, isArmstrong(input_number) ? "an" : "NOT an");
+    printf("---------------------------------\n\n");
 
     return 0;
 }

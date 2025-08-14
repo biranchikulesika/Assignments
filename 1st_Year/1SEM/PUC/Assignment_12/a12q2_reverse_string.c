@@ -1,40 +1,48 @@
-/*
-* Assignment No.: 12
-* Question No.: 02
-* Date:
-
-* Program: String Reverser
-* Description: This C program reverses a string using a user-defined function named reverse().
-* The string is entered by the user as run-time input.
-
-* Author: Biranchi Kulesika
-* Date: 3 Feb, 2025
-* Version: 1.0
-*/
-
+/**
+ * @file a12q2_reverse_string.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Reverses a given string in-place.
+ *
+ * This program prompts the user for a string, safely reads the input,
+ * and then reverses the string using a dedicated function that modifies
+ * the string directly (in-place). The original and reversed strings
+ * are then displayed.
+ */
 #include <stdio.h>
 #include <string.h>
 
-void reverse(char str[]) {
-    int length = strlen(str);
-    for (int i = 0; i < length / 2; i++) {
-        char temp = str[i];
-        str[i] = str[length - i - 1];
-        str[length - i - 1] = temp;
-    }
+void reverse_string_in_place(char text[])
+{
+	int length = strlen(text);
+	for (int i = 0; i < length / 2; i++)
+	{
+		char temp = text[i];
+		text[i] = text[length - i - 1];
+		text[length - i - 1] = temp;
+	}
 }
 
-int main() {
-    char str[100];
+int main()
+{
+	char input_string[100];
+	char original_string[100];
 
-    printf("Enter a string: ");
-    fgets(str, sizeof(str), stdin);
+	printf("Enter a string to reverse: ");
+	if (fgets(input_string, sizeof(input_string), stdin) == NULL)
+	{
+		printf("Error: Failed to read input.\n");
+		return 1;
+	}
 
-    str[strcspn(str, "\n")] = '\0';
+	input_string[strcspn(input_string, "\n")] = '\0';
 
-    reverse(str);
+	strcpy(original_string, input_string);
 
-    printf("Reversed string: %s\n", str);
+	reverse_string_in_place(input_string);
 
-    return 0;
+	printf("\nOriginal string:  \"%s\"\n", original_string);
+	printf("Reversed string:  \"%s\"\n\n", input_string);
+
+	return 0;
 }

@@ -1,27 +1,20 @@
-/*
-*Assignment No.: 09
-*Question No.: 05
-*Date: [empty]
-
-* Program: Count Occurence in a array
-* Description: This C program counts the no. of
-* occurances a key has in the array of natural numbers.
-
-* Author: Biranchi Kulesika
-* Date: December 5, 2024
-* Version: 1.0
-*/
+/**
+ * @file a9q5_count_key_in_array.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Counts the occurrences of a key in an array of integers.
+ *
+ * This C program prompts the user for the size and elements of an integer
+ * array. It then asks for a key value and counts and displays the number
+ * of times the key appears in the array.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void findOccurrences(int arr[], int size)
+int count_occurrences(const int arr[], int size, int key)
 {
-    int key, count = 0;
-
-    printf("\nEnter the number to search for: ");
-    scanf("%d", &key);
-
+    int count = 0;
     for (int i = 0; i < size; i++)
     {
         if (arr[i] == key)
@@ -29,19 +22,12 @@ void findOccurrences(int arr[], int size)
             count++;
         }
     }
-
-    if (count == 0)
-    {
-        printf("\nNo occurrences of %d found in the array.\n\n", key);
-    }
-    else
-    {
-        printf("\nFound %d occurrence(s) of %d in the array.\n\n", count, key);
-    }
+    return count;
 }
 
-void displayArray(int arr[], int size)
+void print_array(const char *title, const int arr[], int size)
 {
+    printf("%s", title);
     for (int i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
@@ -51,54 +37,55 @@ void displayArray(int arr[], int size)
 
 int main()
 {
-    int n;
+    int array_size;
 
     printf("\nEnter the number of elements in the array: ");
-
-    int retry_count = 0;
-    while (1)
+    if (scanf("%d", &array_size) != 1 || array_size <= 0)
     {
-        scanf("%d", &n);
-
-        if (n >= 1)
-        {
-            break;
-        }
-        else
-        {
-            retry_count++;
-            if (retry_count >= 3)
-            {
-                printf("\nProgram terminated due to multiple wrong inputs.\n\n");
-                return 0; // Terminate after 3 invalid attempts
-            }
-            printf("\nInvalid input!\nPlease enter a number >= 1: ");
-        }
+        printf("Error: Invalid input. Please enter a positive integer for the size.\n");
+        return 1;
     }
 
-    // Created integer with dynamic memory allocation
-
-    int *arr = (int *)malloc(n * sizeof(int));
+    int *arr = (int *)malloc(array_size * sizeof(int));
     if (arr == NULL)
     {
         printf("Memory allocation failed. Exiting...\n");
         return 1;
     }
 
-    // Prompts the user to enter elements in the array
-    printf("Enter the elements of the array: \n");
-    for (int i = 0; i < n; i++)
+    printf("Enter %d integer elements for the array:\n", array_size);
+    for (int i = 0; i < array_size; i++)
     {
-        fflush(stdin);
-        scanf("%d", &arr[i]);
+        if (scanf("%d", &arr[i]) != 1)
+        {
+            printf("Error: Invalid input. Please enter integers only.\n");
+            free(arr);
+            return 1;
+        }
     }
 
-    // Prints the array elements using user defined function
-    printf("\nArray contents: ");
-    displayArray(arr, n);
+    printf("\nArray Analysis:\n");
+    print_array("Array contents: ", arr, array_size);
 
-    // Finds number of occurences in the array using user define functions
-    findOccurrences(arr, n);
+    int key;
+    printf("\nEnter the number to search for: ");
+    if (scanf("%d", &key) != 1)
+    {
+        printf("Error: Invalid input. Please enter a valid integer key.\n");
+        free(arr);
+        return 1;
+    }
+
+    int occurrences = count_occurrences(arr, array_size, key);
+
+    if (occurrences == 0)
+    {
+        printf("\nThe key %d was not found in the array.\n\n", key);
+    }
+    else
+    {
+        printf("\nThe key %d was found %d time(s) in the array.\n\n", key, occurrences);
+    }
 
     free(arr);
     return 0;

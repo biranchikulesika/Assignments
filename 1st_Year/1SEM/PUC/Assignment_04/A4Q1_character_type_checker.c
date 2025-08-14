@@ -1,58 +1,57 @@
-/*
- * This C program checks whether an entered character
- * is an alphabet, digit, or special character.
- * If it is an alphabet, the program further checks
- * whether it is a vowel or consonant, and whether it
- * is uppercase or lowercase.
+/**
+ * @file a4q1_character_type_checker.c
+ * @author Biranchi Kulesika
+ * @date 23 Sep 2023
+ * @brief Checks and classifies a single character input by the user.
  *
- *Author: Biranchi Kulesika
- *Date: 23 Sep, 2023
- *Assignment No.: 04
- *Question No.: 01
+ * This program prompts the user to enter a single character and then
+ * analyzes it to determine if it is an alphabet, a digit, or a
+ * special character. If it is an alphabet, it further identifies
+ * whether it is uppercase or lowercase, and a vowel or a consonant.
  */
 
-#include <ctype.h>
 #include <stdio.h>
+#include <ctype.h>
 
 int main()
 {
-    char ch;
-    printf("\n\nEnter a character: ");
-    scanf("%c", &ch);
+    char input_char;
 
-    if (isalpha(ch))
+    printf("Enter a single character: ");
+    if (scanf(" %c", &input_char) != 1)
     {
-        if (isupper(ch))
+        printf("Error: Failed to read character.\n");
+        return 1;
+    }
+
+    printf("\n--- Character Analysis ---\n");
+    printf("Input: '%c'\n", input_char);
+    printf("Type:  ");
+
+    if (isalpha(input_char))
+    {
+        char lower_char = tolower(input_char);
+        int is_vowel_flag = (lower_char == 'a' || lower_char == 'e' || lower_char == 'i' || lower_char == 'o' || lower_char == 'u');
+
+        if (isupper(input_char))
         {
-            if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U')
-            {
-                printf("\"%c\" is a capital letter and a vowel.\n\n", ch);
-            }
-            else
-            {
-                printf("\"%c\" is a capital letter and a consonant.\n\n", ch);
-            }
+            printf("Uppercase Alphabet (%s)\n", is_vowel_flag ? "Vowel" : "Consonant");
         }
         else
         {
-            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
-            {
-                printf("\"%c\" is a smallcase letter and a vowel.\n\n", ch); // I've used to back-slash to escape the double quotion mark.
-            }
-            else
-            {
-                printf("\"%c\" is a smallcase letter and a consonant.\n\n", ch);
-            }
+            printf("Lowercase Alphabet (%s)\n", is_vowel_flag ? "Vowel" : "Consonant");
         }
     }
-
-    else if (isdigit(ch))
+    else if (isdigit(input_char))
     {
-        printf("\"%c\" is a digit.\n\n", ch);
+        printf("Digit\n");
     }
     else
     {
-        printf("\"%c\" is a special character.\n\n", ch);
+        printf("Special Character\n");
     }
+
+    printf("--------------------------\n\n");
+
     return 0;
 }

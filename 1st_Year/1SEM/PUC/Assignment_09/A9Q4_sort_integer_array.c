@@ -1,37 +1,35 @@
-/*
-*Assignment No.: 09
-*Question No.: 04
-*Date: [empty]
-
-* Program: Sort Array of Integers
-* Description: this C program takes integer array as input and sort it in ascending order.
-
-* Author: Biranchi Kulesika
-* Date: December 5, 2024
-* Version: 1.0
-*/
+/**
+ * @file a9q4_sort_integer_array.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Sorts an integer array in ascending order.
+ *
+ * This program prompts the user for the size and elements of an integer
+ * array. It then sorts the array in ascending order using the Bubble
+ * Sort algorithm and displays both the original and sorted arrays.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void sortArray(int arr[], int size)
+void sort_array_ascending(int arr[], int size)
 {
+    int temp;
+
     for (int i = 0; i < size - 1; i++)
     {
         for (int j = 0; j < size - i - 1; j++)
         {
-            if (arr[j] > arr[j + 1])
-            {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
+            temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
         }
     }
 }
 
-void printArray(int arr[], int size)
+void print_array(const char *title, const int arr[], int size)
 {
+    printf("%s", title);
     for (int i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
@@ -41,43 +39,41 @@ void printArray(int arr[], int size)
 
 int main()
 {
-    int n;
+    int array_size;
     printf("Enter the size of the array: ");
-    scanf("%d", &n);
-
-    if (n <= 0)
+    if (scanf("%d", &array_size) != 1 || array_size <= 0)
     {
-        printf("Invalid array size.\n");
+        printf("Error: Invalid input. Please enter a positive integer for the size.\n");
         return 1;
     }
 
-    // Dynamic memory allocation
-    int *array = (int *)malloc(n * sizeof(int));
-    if (array == NULL)
+    int *arr = (int *)malloc(array_size * sizeof(int));
+    if (arr == NULL)
     {
-        printf("Memory allocation failed!\n");
+        printf("Error: Memory allocation failed.\n");
         return 1;
     }
 
-    printf("Enter elements to the array:\n");
-    for (int i = 0; i < n; i++)
+    printf("Enter %d integer elements for the array:\n", array_size);
+    for (int i = 0; i < array_size; i++)
     {
-        scanf("%d", &array[i]);
+        if (scanf("%d", &arr[i]) != 1)
+        {
+            printf("Error: Invalid input. Please enter integers only.\n");
+            free(arr);
+            return 1;
+        }
     }
 
-    // Displaying the array
-    printf("\nThe entered elements to the array are:\n");
-    printArray(array, n);
+    printf("\nArray Sorting:\n");
+    print_array("Original Array: ", arr, array_size);
 
-    // Sorting the array
-    sortArray(array, n);
+    sort_array_ascending(arr, array_size);
 
-    // Displaying the sorted array
-    printf("\nThe elements in the array after sorting:\n");
-    printArray(array, n);
+    print_array("Sorted Array  : ", arr, array_size);
+    printf("\n");
 
-    // Free allocated memory
-    free(array);
+    free(arr);
 
     return 0;
 }

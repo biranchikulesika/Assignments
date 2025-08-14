@@ -1,32 +1,46 @@
-/*
- *This C program checks whether an alphabet input is vowel or consonant
- *using nested if
+/**
+ * @file a2q2_vowel_consonant_check.c
+ * @author Biranchi Kulesika
+ * @date 12 Sep, 2023
+ * @brief Checks if a character is a vowel or a consonant.
  *
- *Author: Biranchi Kulesika
- *Date: 12 Sep, 2023
- *Assignment No.: 02
- *Question No.: 02
+ * This program prompts the user to enter a single character and determines
+ * whether it is a vowel or a consonant. It handles both uppercase and
+ * lowercase letters and validates that the input is an alphabet.
  */
 
 #include <ctype.h>
 #include <stdio.h>
 
-int main() {
+int main()
+{
+  char input_char;
+  char lower_char;
 
-  char ch;
+  printf("Enter a character: ");
+  scanf(" %c", &input_char);
 
-  printf("\n\nEnter an alphabet: ");
-  scanf("%c", &ch);
+  printf("\n--- Vowel/Consonant Check ---\n");
 
-  if (isalpha(ch)) {
-    if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
-        ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
-      printf("'%c' is a vowel.\n\n", ch);
-    } else {
-      printf("'%c' is a consonant.\n\n", ch);
+  if (isalpha(input_char))
+  {
+    lower_char = tolower(input_char);
+    if (lower_char == 'a' || lower_char == 'e' || lower_char == 'i' ||
+        lower_char == 'o' || lower_char == 'u')
+    {
+      printf("Result: '%c' is a vowel.\n", input_char);
     }
-  } else
-    printf("The enter character '%c' is not an alphabet\n\n", ch);
+    else
+    {
+      printf("Result: '%c' is a consonant.\n", input_char);
+    }
+  }
+  else
+  {
+    printf("Error: '%c' is not an alphabet.\n", input_char);
+  }
+
+  printf("-----------------------------\n\n");
 
   return 0;
 }

@@ -1,42 +1,55 @@
-/*
- *This C program finds the smallest number among three numbers
- *entered by the user as run-time input.
+/**
+ * @file a3q2_find_smallest_number.c
+ * @author Biranchi Kulesika
+ * @date 20 Sep 2023
+ * @brief Finds the smallest of three integer numbers.
  *
- *Author: Biranchi Kulesika
- *Date: 20 Sep, 2023
- *Assignment No.: 03
- *Question No.: 02
+ * This program prompts the user to enter three integers and then
+ * determines and displays the smallest among them. It includes input
+ * validation to ensure that valid integers are entered.
  */
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
   int num1, num2, num3, smallest;
 
-  printf("\n\nEnter the first number: ");
-  scanf("%d", &num1);
-  printf("Enter the second number: ");
-  scanf("%d", &num2);
-  printf("Enter the third number: ");
-  scanf("%d", &num3);
-  printf("\nThe entered numbers are %d, %d, and %d.", num1, num2, num3);
-
-  if (num1 <= num2) {
-    if (num1 <= num3) {
-      smallest = num1;
-    } else {
-      smallest = num3;
-    }
-  } else {
-    if (num2 <= num3) {
-      smallest = num2;
-    } else {
-      smallest = num3;
-    }
+  printf("Enter the first integer: ");
+  if (scanf("%d", &num1) != 1)
+  {
+    printf("Invalid input. Please enter a valid integer.\n");
+    return 1;
   }
 
-  // Print the largest number
-  printf("\n\nThe smallest number is: %d\n\n", smallest);
+  printf("Enter the second integer: ");
+  if (scanf("%d", &num2) != 1)
+  {
+    printf("Invalid input. Please enter a valid integer.\n");
+    return 1;
+  }
+
+  printf("Enter the third integer: ");
+  if (scanf("%d", &num3) != 1)
+  {
+    printf("Invalid input. Please enter a valid integer.\n");
+    return 1;
+  }
+
+  smallest = num1;
+  if (num2 < smallest)
+  {
+    smallest = num2;
+  }
+  if (num3 < smallest)
+  {
+    smallest = num3;
+  }
+
+  printf("\n--- Comparison Result ---\n");
+  printf("Entered numbers: %d, %d, and %d\n", num1, num2, num3);
+  printf("The smallest number is: %d\n", smallest);
+  printf("-------------------------\n\n");
 
   return 0;
 }
