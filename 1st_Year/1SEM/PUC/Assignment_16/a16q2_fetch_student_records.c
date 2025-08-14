@@ -1,18 +1,17 @@
-/*
- * Assignment No.: 16
- * Question No.: 02
- * Date:
+/**
+ * @file a16q2_fetch_student_records.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Fetches and displays student records from a text file.
  *
- * Program: Fetch Student Records from a File
- * Description: This C program fetches student records from a file and prints them on the monitor.
- *
- * Author: Biranchi Kulesika
- * Date: 4 Feb, 2025
- * Version: 1.0
+ * This program reads student records from a file named "student_records.txt"
+ * and displays them on the console in a structured format. It handles cases
+ * where the file cannot be opened or is empty.
  */
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#define FILENAME "student_records.txt"
 
 typedef struct
 {
@@ -23,26 +22,33 @@ typedef struct
 
 int main()
 {
-    FILE *file;
+    FILE *file_ptr;
     Student student;
+    int records_found = 0;
 
-    file = fopen("student_records.txt", "r");
-    if (file == NULL)
+    file_ptr = fopen(FILENAME, "r");
+    if (file_ptr == NULL)
     {
-        printf("Cannot open file\n");
+        perror("Error opening file for reading");
         return 1;
     }
 
-    printf("Student Records:\n\n");
+    printf("Student Records from \"%s\":\n\n", FILENAME);
 
-    while (fscanf(file, "Roll No: %s\nName: %[^\n]\nCourse: %[^\n]\n\n", student.roll_no, student.name, student.course) != EOF)
+    while (fscanf(file_ptr, "Roll No: %9s\nName: %49[^\n]\nCourse: %49[^\n]\n\n", student.roll_no, student.name, student.course) == 3)
     {
         printf("Roll No: %s\n", student.roll_no);
-        printf("Name: %s\n", student.name);
-        printf("Course: %s\n\n", student.course);
+        printf("Name:    %s\n", student.name);
+        printf("Course:  %s\n\n", student.course);
+        records_found++;
     }
 
-    fclose(file);
+    if (records_found == 0)
+    {
+        printf("No student records found in the file.\n\n");
+    }
+
+    fclose(file_ptr);
 
     return 0;
 }

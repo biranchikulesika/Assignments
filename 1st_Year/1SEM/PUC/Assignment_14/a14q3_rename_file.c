@@ -1,38 +1,56 @@
-/*
- * Assignment No.: 14
- * Question No.: 03
- * Date:
+/**
+ * @file a14q3_rename_file.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Renames a file.
  *
- * Program: Rename File
- * Description: This C program renames an existing text file. The current file name and the new file name are provided as input by the user.
- *
- * Author: Biranchi Kulesika
- * Date: 3 Feb, 2025
- * Version: 1.0
+ * This program prompts the user for the current and new filenames.
+ * It performs robust error checking, including handling filenames with
+ * spaces, and then renames the file using the standard library's
+ * rename function.
  */
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define MAX_FILENAME_LENGTH 256
 
 int main()
 {
-	char current_file_name[100], new_file_name[100];
+	char old_filename[MAX_FILENAME_LENGTH];
+	char new_filename[MAX_FILENAME_LENGTH];
 
-	printf("Rename File\n\n");
+	printf("File Rename Utility:\n");
 
-	printf("Current file name: ");
-	scanf("%s", current_file_name);
-
-	printf("New file name: ");
-	scanf("%s", new_file_name);
-
-	if (rename(current_file_name, new_file_name) == 0)
+	printf("Enter the current file name: ");
+	if (fgets(old_filename, sizeof(old_filename), stdin) == NULL)
 	{
-		printf("\nFile renamed successfully.\n");
+		fprintf(stderr, "Error: Failed to read current filename.\n");
+		return 1;
+	}
+	old_filename[strcspn(old_filename, "\n")] = '\0';
+
+	printf("Enter the new file name: ");
+	if (fgets(new_filename, sizeof(new_filename), stdin) == NULL)
+	{
+		fprintf(stderr, "Error: Failed to read new filename.\n");
+		return 1;
+	}
+	new_filename[strcspn(new_filename, "\n")] = '\0';
+
+	if (strcmp(old_filename, new_filename) == 0)
+	{
+		fprintf(stderr, "\nError: New filename cannot be the same as the current filename.\n");
+		return 1;
+	}
+
+	if (rename(old_filename, new_filename) == 0)
+	{
+		printf("\nFile successfully renamed from \"%s\" to \"%s\".\n", old_filename, new_filename);
 	}
 	else
 	{
-		printf("\nError renaming file.\n");
+		perror("\nError renaming file");
 	}
 
 	return 0;

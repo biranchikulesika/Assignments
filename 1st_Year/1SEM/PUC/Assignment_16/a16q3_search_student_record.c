@@ -1,19 +1,18 @@
-/*
- * Assignment No.: 16
- * Question No.: 03
- * Date:
+/**
+ * @file a16q3_search_student_record.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Searches for and displays a specific student record from a file.
  *
- * Program: Search a Student Record from a File
- * Description: This C program searches for a student record in a file and displays the record.
- *
- * Author: Biranchi Kulesika
- * Date: 4 Feb, 2025
- * Version: 1.0
+ * This program prompts the user for a student's roll number, searches for
+ * the corresponding record in "student_records.txt", and displays the
+ * details if found. It includes robust error handling and safe file parsing.
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#define FILENAME "student_records.txt"
 
 typedef struct
 {
@@ -24,35 +23,37 @@ typedef struct
 
 int main()
 {
-	FILE *file;
+	FILE *file_ptr;
 	Student student;
 	char search_roll_no[10];
 	int found = 0;
 
-	file = fopen("student_records.txt", "r");
-	if (file == NULL)
+	file_ptr = fopen(FILENAME, "r");
+	if (file_ptr == NULL)
 	{
-		printf("Cannot open file\n");
+		perror("Error opening file for reading");
 		return 1;
 	}
 
+	printf("--- Student Record Search ---\n");
 	printf("Enter the roll number to search: ");
-	fgets(search_roll_no, sizeof(search_roll_no), stdin);
-
-	int len = strlen(search_roll_no);
-	if (search_roll_no[len - 1] == '\n')
+	if (fgets(search_roll_no, sizeof(search_roll_no), stdin) == NULL)
 	{
-		search_roll_no[len - 1] = '\0';
+		fprintf(stderr, "Error reading Roll No.\n");
+		fclose(file_ptr);
+		return 1;
 	}
+	search_roll_no[strcspn(search_roll_no, "\n")] = '\0';
 
-	while (fscanf(file, "Roll No: %s\nName: %[^\n]\nCourse: %[^\n]\n\n", student.roll_no, student.name, student.course) != EOF)
+	while (fscanf(file_ptr, "Roll No: %9s\nName: %49[^\n]\nCourse: %49[^\n]\n\n", student.roll_no, student.name, student.course) == 3)
 	{
 		if (strcmp(student.roll_no, search_roll_no) == 0)
 		{
-			printf("\nRecord Found:\n");
+			printf("\n--- Record Found ---\n");
 			printf("Roll No: %s\n", student.roll_no);
-			printf("Name: %s\n", student.name);
-			printf("Course: %s\n", student.course);
+			printf("Name:    %s\n", student.name);
+			printf("Course:  %s\n", student.course);
+			printf("--------------------\n");
 			found = 1;
 			break;
 		}
@@ -60,10 +61,10 @@ int main()
 
 	if (!found)
 	{
-		printf("No record found with Roll No: %s\n", search_roll_no);
+		printf("\nResult: No record found with Roll No: \"%s\".\n", search_roll_no);
 	}
 
-	fclose(file);
+	fclose(file_ptr);
 
 	return 0;
 }

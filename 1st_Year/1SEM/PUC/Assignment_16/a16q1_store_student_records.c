@@ -1,20 +1,20 @@
-/*
- * Assignment No.: 16
- * Question No.: 01
- * Date:
+/**
+ * @file a16q1_store_student_records.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Stores student records in a text file.
  *
- * Program: Store Student Records in a File
- * Description: This C program stores some student records in a file.
- * The user is prompted to enter student details, which are then written to a file.
- *
- * Author: Biranchi Kulesika
- * Date: 4 Feb, 2025
- * Version: 1.0
+ * This program prompts the user for the number of students and their details
+ * (Roll No, Name, Course). It then writes these records to a file named
+ * "student_records.txt" in a structured text format, overwriting any
+ * existing content.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#define FILENAME "student_records.txt"
 
 typedef struct
 {
@@ -23,60 +23,70 @@ typedef struct
 	char course[50];
 } Student;
 
+void clean_stdin()
+{
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF)
+	{
+	}
+}
+
 int main()
 {
-	FILE *file;
-	int n, i;
+	FILE *file_ptr;
+	int num_students, i;
 	Student student;
 
-	file = fopen("student_records.txt", "w");
-	if (file == NULL)
+	file_ptr = fopen(FILENAME, "w");
+	if (file_ptr == NULL)
 	{
-		printf("Cannot open file\n");
+		perror("Error opening file for writing");
 		return 1;
 	}
 
-	printf("Enter the number of students: ");
-	scanf("%d", &n);
-	getchar();
-
-	for (i = 0; i < n; i++)
+	printf("--- Student Record Entry ---\n");
+	printf("Enter the number of students to add: ");
+	if (scanf("%d", &num_students) != 1 || num_students < 0)
 	{
-		printf("\nEnter details for student %d", i + 1);
-		printf("\nRoll No: ");
-		fgets(student.roll_no, sizeof(student.roll_no), stdin);
+		fprintf(stderr, "Error: Invalid input. Please enter a non-negative integer.\n");
+		fclose(file_ptr);
+		return 1;
+	}
+	clean_stdin();
 
-		int len = strlen(student.roll_no);
-		if (student.roll_no[len - 1] == '\n')
+	for (i = 0; i < num_students; i++)
+	{
+		printf("\nEnter details for student %d:\n", i + 1);
+
+		printf("  Roll No: ");
+		if (fgets(student.roll_no, sizeof(student.roll_no), stdin) == NULL)
 		{
-			student.roll_no[len - 1] = '\0';
+			fprintf(stderr, "Error reading Roll No.\n");
+			break;
 		}
+		student.roll_no[strcspn(student.roll_no, "\n")] = '\0';
 
-		fflush(stdin);
-
-		printf("Name: ");
-		fgets(student.name, sizeof(student.name), stdin);
-
-		len = strlen(student.name);
-		if (student.name[len - 1] == '\n')
+		printf("  Name: ");
+		if (fgets(student.name, sizeof(student.name), stdin) == NULL)
 		{
-			student.name[len - 1] = '\0';
+			fprintf(stderr, "Error reading Name.\n");
+			break;
 		}
+		student.name[strcspn(student.name, "\n")] = '\0';
 
-		fflush(stdin);
-
-		printf("Course: ");
-		fgets(student.course, sizeof(student.course), stdin);
-		if (student.course[len - 1] == '\n')
+		printf("  Course: ");
+		if (fgets(student.course, sizeof(student.course), stdin) == NULL)
 		{
-			student.course[len - 1] = '\0';
+			fprintf(stderr, "Error reading Course.\n");
+			break;
 		}
+		student.course[strcspn(student.course, "\n")] = '\0';
 
-		fprintf(file, "Roll No: %s\nName: %s\nCourse: %s\n\n", student.roll_no, student.name, student.course);
+		fprintf(file_ptr, "Roll No: %s\nName: %s\nCourse: %s\n\n", student.roll_no, student.name, student.course);
 	}
 
-	fclose(file);
-	printf("Student records stored successfully in student_records.txt\n");
+	fclose(file_ptr);
+	printf("\n%d student record(s) stored successfully in \"%s\".\n", i, FILENAME);
 
 	return 0;
 }

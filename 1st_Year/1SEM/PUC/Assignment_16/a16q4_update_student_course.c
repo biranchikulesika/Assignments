@@ -1,19 +1,20 @@
-/*
- * Assignment No.: 16
- * Question No.: 04
- * Date:
+/**
+ * @file a16q4_update_student_course.c
+ * @author Biranchi Kulesika
+ * @date {empty}
+ * @brief Updates a student's course in a text file based on roll number.
  *
- * Program: Update a Student Course based on Roll Number
- * Description: This C program updates a student's course based on the roll number. The user is prompted to enter a roll number and the new course, and the program updates the corresponding record in the file.
- *
- * Author: Biranchi Kulesika
- * Date: 4 Feb, 2025
- * Version: 1.0
+ * This program prompts for a student's roll number and a new course. It reads
+ * records from a source file, writes all records to a temporary file
+ * (with the specified record updated), and then safely replaces the original
+ * file with the temporary one.
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#define SOURCE_FILENAME "student_records.txt"
+#define TEMP_FILENAME "temp.txt"
 
 typedef struct
 {
@@ -24,58 +25,92 @@ typedef struct
 
 int main()
 {
-	FILE *file, *tempFile;
+	FILE *source_file_ptr, *temp_file_ptr;
 	Student student;
 	char search_roll_no[10];
 	char new_course[50];
-	int found = 0;
+	int record_found = 0;
 
-	file = fopen("student_records.txt", "r");
-	if (file == NULL)
+	source_file_ptr = fopen(SOURCE_FILENAME, "r");
+	if (source_file_ptr == NULL)
 	{
-		printf("Cannot open file 'student_records.txt'\n");
+		perror("Error opening source file");
 		return 1;
 	}
 
-	tempFile = fopen("temp.txt", "w");
-	if (tempFile == NULL)
+	temp_file_ptr = fopen(TEMP_FILENAME, "w");
+	if (temp_file_ptr == NULL)
 	{
-		printf("Cannot open temporary file\n");
-		fclose(file);
+		perror("Error opening temporary file");
+		fclose(source_file_ptr);
 		return 1;
 	}
 
-	printf("Enter the roll number to update the course: ");
-	fgets(search_roll_no, sizeof(search_roll_no), stdin);
+	printf("--- Student Course Update Utility ---\n");
+	printf("Enter the roll number to update: ");
+	if (fgets(search_roll_no, sizeof(search_roll_no), stdin) == NULL)
+	{
+		fprintf(stderr, "Error reading Roll No.\n");
+		fclose(source_file_ptr);
+		fclose(temp_file_ptr);
+		remove(TEMP_FILENAME);
+		return 1;
+	}
 	search_roll_no[strcspn(search_roll_no, "\n")] = '\0';
 
-	while (fscanf(file, "Roll No: %9s\nName: %49[^\n]\nCourse: %49[^\n]\n\n", student.roll_no, student.name, student.course) == 3)
+	while (fscanf(source_file_ptr, "Roll No: %9s\nName: %49[^\n]\nCourse: %49[^\n]\n\n", student.roll_no, student.name, student.course) == 3)
 	{
 		if (strcmp(student.roll_no, search_roll_no) == 0)
 		{
-			printf("Roll No: %s\nName: %s\nCourse: %s\n", student.roll_no, student.name, student.course);
-			printf("Enter the new course: ");
-			fgets(new_course, sizeof(new_course), stdin);
+			printf("\n--- Current Record ---\n");
+			printf("Roll No: %s\n", student.roll_no);
+			printf("Name:    %s\n", student.name);
+			printf("Course:  %s\n", student.course);
+			printf("----------------------\n");
+
+			printf("\nEnter the new course: ");
+			if (fgets(new_course, sizeof(new_course), stdin) == NULL)
+			{
+				fprintf(stderr, "Error reading new course. Aborting update.\n");
+				fprintf(temp_file_ptr, "Roll No: %s\nName: %s\nCourse: %s\n\n", student.roll_no, student.name, student.course);
+				record_found = -1;
+				break;
+			}
 			new_course[strcspn(new_course, "\n")] = '\0';
 			strcpy(student.course, new_course);
-			found = 1;
+			record_found = 1;
 		}
-		fprintf(tempFile, "Roll No: %s\nName: %s\nCourse: %s\n\n", student.roll_no, student.name, student.course);
+		fprintf(temp_file_ptr, "Roll No: %s\nName: %s\nCourse: %s\n\n", student.roll_no, student.name, student.course);
 	}
 
-	fclose(file);
-	fclose(tempFile);
+	fclose(source_file_ptr);
+	fclose(temp_file_ptr);
 
-	if (found)
+	if (record_found == 1)
 	{
-		remove("student_records.txt");
-		rename("temp.txt", "student_records.txt");
-		printf("Record updated successfully.\n");
+		if (remove(SOURCE_FILENAME) != 0)
+		{
+			perror("Error deleting original file");
+			fprintf(stderr, "Update failed. The updated data is in \"%s\".\n", TEMP_FILENAME);
+			return 1;
+		}
+		if (rename(TEMP_FILENAME, SOURCE_FILENAME) != 0)
+		{
+			perror("Error renaming temporary file");
+			fprintf(stderr, "Update failed. The original file was deleted, but the new file could not be renamed. The data is in \"%s\".\n", TEMP_FILENAME);
+			return 1;
+		}
+		printf("\nRecord updated successfully.\n");
+	}
+	else if (record_found == 0)
+	{
+		remove(TEMP_FILENAME);
+		printf("\nResult: No record found with Roll No: \"%s\".\n", search_roll_no);
 	}
 	else
 	{
-		remove("temp.txt");
-		printf("No record found for roll number %s\n", search_roll_no);
+		remove(TEMP_FILENAME);
+		printf("\nUpdate aborted due to input error.\n");
 	}
 
 	return 0;
