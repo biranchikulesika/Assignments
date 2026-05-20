@@ -1,41 +1,34 @@
-// File Name: form-validation.js
-
 function validateForm() {
+    var name = document.getElementById("name").value;
+    var dob = document.getElementById("dob").value;
+    var email = document.getElementById("email").value;
+    var mobile = document.getElementById("mobile").value;
+    var password = document.getElementById("password").value;
 
-	let name = document.getElementById("name").value;
+    if (name == "") {
+        alert("Name cannot be empty");
+        return false;
+    }
 
-	let dob = document.getElementById("dob").value;
+    if (dob == "") {
+        alert("DOB cannot be empty");
+        return false;
+    }
 
-	let email = document.getElementById("email").value;
+    if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+        alert("Invalid email");
+        return false;
+    }
 
-	let mobile = document.getElementById("mobile").value;
+    if (mobile.length != 10 || isNaN(mobile)) {
+        alert("Mobile must be 10 digits");
+        return false;
+    }
 
-	let password = document.getElementById("password").value;
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return false;
+    }
 
-	if (name == "") {
-		alert("Enter Name");
-		return false;
-	}
-
-	if (dob == "") {
-		alert("Select DOB");
-		return false;
-	}
-
-	if (email == "" || !email.includes("@")) {
-		alert("Enter Valid Email");
-		return false;
-	}
-
-	if (mobile.length != 10) {
-		alert("Enter 10 Digit Mobile Number");
-		return false;
-	}
-
-	if (password.length < 6) {
-		alert("Password Must Be At Least 6 Characters");
-		return false;
-	}
-
-	return true;
+    return true;
 }

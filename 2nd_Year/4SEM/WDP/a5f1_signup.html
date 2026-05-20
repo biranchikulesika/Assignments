@@ -1,87 +1,63 @@
-<!-- File Name: signup.html -->
-
 <!DOCTYPE html>
 <html>
-
 <head>
-
-	<title>Registration Form</title>
-
-	<link rel="stylesheet" href="a5f2_signup.css">
-
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="a5f2_style.css">
+    <script src="a5f3_signup.js"></script>
 </head>
-
 <body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form action="a5f4_display.php" method="POST" onsubmit="return validateForm()">
+            <div class="form-group">
+                <input type="text" name="name" id="name" placeholder="Name">
+            </div>
 
-	<div class="container">
+            <div class="form-group">
+                <input type="text" name="dob" id="dob" placeholder="DOB (YYYY-MM-DD)">
+            </div>
 
-		<section>
+            <div class="form-group">
+                <input type="email" name="email" id="email" placeholder="Email">
+            </div>
 
-			<h1>Registration Form</h1>
+            <div class="form-group">
+                <input type="text" name="mobile" id="mobile" placeholder="Mobile">
+            </div>
 
-			<form action="a5f4_signup.php" method="POST" onsubmit="return validateForm()">
+            <div class="form-group">
+                <textarea name="address" id="address" rows="3" placeholder="Address"></textarea>
+            </div>
 
-				<label>Name</label>
-				<input type="text" name="name" id="name">
+            <div class="form-group">
+                <input type="password" name="password" id="password" placeholder="Password">
+            </div>
 
-				<label>Date of Birth</label>
-				<input type="date" name="dob" id="dob">
+            <div class="form-group inline-group">
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="Male" checked> Male
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
 
-				<label>Email</label>
-				<input type="email" name="email" id="email">
+            <div class="form-group inline-group">
+                <label>Country:</label>
+                <select name="country" id="country">
+                    <option value="" disabled selected>Select Country</option>
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                    <option value="UK">UK</option>
+                </select>
+            </div>
 
-				<label>Mobile</label>
-				<input type="text" name="mobile" id="mobile">
+            <div class="form-group inline-group">
+                <label>Languages:</label>
+                <input type="checkbox" name="languages[]" value="English"> English
+                <input type="checkbox" name="languages[]" value="Hindi"> Hindi
+                <input type="checkbox" name="languages[]" value="Odia"> Odia
+            </div>
 
-				<label>Address</label>
-				<input type="text" name="address" id="address">
-
-				<label>Password</label>
-				<input type="password" name="password" id="password">
-
-				<label>Gender</label>
-
-				<div class="row">
-
-					<input type="radio" name="gender" value="Male"> Male
-
-					<input type="radio" name="gender" value="Female"> Female
-
-				</div>
-
-				<label>Country</label>
-
-				<select name="country" id="country">
-
-					<option value="">Select Country</option>
-					<option>India</option>
-					<option>USA</option>
-					<option>UK</option>
-
-				</select>
-
-				<label>Languages</label>
-
-				<div class="row">
-
-					<input type="checkbox" name="language[]" value="English"> English
-
-					<input type="checkbox" name="language[]" value="Hindi"> Hindi
-
-					<input type="checkbox" name="language[]" value="Odia"> Odia
-
-				</div>
-
-				<input type="submit" value="Submit" id="btn">
-
-			</form>
-
-		</section>
-
-	</div>
-
-	<script src="a5f3_signup.js"></script>
-
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
-
 </html>
