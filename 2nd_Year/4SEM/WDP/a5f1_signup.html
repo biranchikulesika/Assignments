@@ -1,63 +1,106 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Registration Form</title>
+
     <link rel="stylesheet" href="a5f2_style.css">
+
     <script src="a5f3_signup.js"></script>
+
 </head>
+
 <body>
-    <div class="container">
-        <h2>Registration Form</h2>
-        <form action="a5f4_display.php" method="POST" onsubmit="return validateForm()">
-            <div class="form-group">
-                <input type="text" name="name" id="name" placeholder="Name">
-            </div>
 
-            <div class="form-group">
-                <input type="text" name="dob" id="dob" placeholder="DOB (YYYY-MM-DD)">
-            </div>
+<div class="container">
 
-            <div class="form-group">
-                <input type="email" name="email" id="email" placeholder="Email">
-            </div>
+    <h2>Registration Form</h2>
 
-            <div class="form-group">
-                <input type="text" name="mobile" id="mobile" placeholder="Mobile">
-            </div>
+    <form
+        action="a5f4_display.php"
+        method="POST"
+        onsubmit="return validateForm()"
+    >
 
-            <div class="form-group">
-                <textarea name="address" id="address" rows="3" placeholder="Address"></textarea>
-            </div>
+        <input type="text" name="name" id="name" placeholder="Name">
 
-            <div class="form-group">
-                <input type="password" name="password" id="password" placeholder="Password">
-            </div>
+        <input type="date" name="dob" id="dob">
 
-            <div class="form-group inline-group">
-                <label>Gender:</label>
-                <input type="radio" name="gender" value="Male" checked> Male
-                <input type="radio" name="gender" value="Female"> Female
-            </div>
+        <input type="email" name="email" id="email" placeholder="Email">
 
-            <div class="form-group inline-group">
-                <label>Country:</label>
-                <select name="country" id="country">
-                    <option value="" disabled selected>Select Country</option>
-                    <option value="India">India</option>
-                    <option value="USA">USA</option>
-                    <option value="UK">UK</option>
-                </select>
-            </div>
+        <input type="text" name="mobile" id="mobile" placeholder="Mobile">
 
-            <div class="form-group inline-group">
-                <label>Languages:</label>
-                <input type="checkbox" name="languages[]" value="English"> English
-                <input type="checkbox" name="languages[]" value="Hindi"> Hindi
-                <input type="checkbox" name="languages[]" value="Odia"> Odia
-            </div>
+        <textarea
+            name="address"
+            id="address"
+            rows="3"
+            placeholder="Address"
+        ></textarea>
 
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+        <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+        >
+
+        <div class="row">
+
+            <label>Gender :</label>
+
+            <input type="radio" name="gender" value="Male" checked>
+
+            Male
+
+            <input type="radio" name="gender" value="Female">
+
+            Female
+
+        </div>
+
+        <div class="row">
+
+            <label>Country :</label>
+
+            <select name="country" id="country">
+
+                <option value="">Select</option>
+
+                <option>India</option>
+
+                <option>USA</option>
+
+                <option>UK</option>
+
+            </select>
+
+        </div>
+
+        <div class="row">
+
+            <label>Languages :</label>
+
+            <input type="checkbox" name="languages[]" value="English">
+
+            English
+
+            <input type="checkbox" name="languages[]" value="Hindi">
+
+            Hindi
+
+            <input type="checkbox" name="languages[]" value="Odia">
+
+            Odia
+
+        </div>
+
+        <input type="submit" value="Submit" id="btn">
+
+    </form>
+
+</div>
+
 </body>
+
 </html>

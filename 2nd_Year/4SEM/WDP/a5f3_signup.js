@@ -1,32 +1,47 @@
-function validateForm() {
-    var name = document.getElementById("name").value;
-    var dob = document.getElementById("dob").value;
-    var email = document.getElementById("email").value;
-    var mobile = document.getElementById("mobile").value;
-    var password = document.getElementById("password").value;
+function validateForm(){
 
-    if (name == "") {
-        alert("Name cannot be empty");
+    let name = document.getElementById("name").value;
+
+    let dob = document.getElementById("dob").value;
+
+    let email = document.getElementById("email").value;
+
+    let mobile = document.getElementById("mobile").value;
+
+    let password = document.getElementById("password").value;
+
+    if(name == ""){
+
+        alert("Enter Name");
+
         return false;
     }
 
-    if (dob == "") {
-        alert("DOB cannot be empty");
+    if(dob == ""){
+
+        alert("Select DOB");
+
         return false;
     }
 
-    if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
-        alert("Invalid email");
+    if(email.indexOf("@") == -1){
+
+        alert("Invalid Email");
+
         return false;
     }
 
-    if (mobile.length != 10 || isNaN(mobile)) {
-        alert("Mobile must be 10 digits");
+    if(mobile.length != 10 || isNaN(mobile)){
+
+        alert("Enter Valid Mobile Number");
+
         return false;
     }
 
-    if (password.length < 6) {
-        alert("Password must be at least 6 characters");
+    if(password.length < 6){
+
+        alert("Password Must Be 6 Characters");
+
         return false;
     }
 
