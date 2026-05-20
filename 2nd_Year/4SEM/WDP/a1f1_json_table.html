@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Create Table Using JSON</title>
+
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 50%;
+			margin-top: 10px;
+		}
+
+		th,
+		td {
+			border: 1px solid black;
+			padding: 8px;
+		}
+
+		th {
+			background-color: lightgray;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h2>Employee Details</h2>
+
+	<div id="tableData"></div>
+
+	<script>
+
+		// JSON String
+		let data = `{
+            "employees": [
+                {
+                    "firstName": "Biranchi",
+                    "lastName": "Kulesika"
+                },
+                {
+                    "firstName": "Laxman",
+                    "lastName": "Kumar Sahoo"
+                },
+                {
+                    "firstName": "Baibhab",
+                    "lastName": "Sahu"
+                }
+            ]
+        }`;
+
+		// Convert JSON string into object
+		let obj = JSON.parse(data);
+
+		// Create table
+		let str = `
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+        `;
+
+		// Loop through JSON data
+		for (let i = 0; i < obj.employees.length; i++) {
+
+			str += `
+                <tr>
+                    <td>${obj.employees[i].firstName}</td>
+                    <td>${obj.employees[i].lastName}</td>
+                </tr>
+            `;
+		}
+
+		str += `</table>`;
+
+		// Display table
+		document.getElementById("tableData").innerHTML = str;
+
+	</script>
+
+</body>
+
+</html>

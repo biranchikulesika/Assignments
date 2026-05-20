@@ -1,0 +1,57 @@
+/* File Name: style.css */
+
+body {
+	font-family: Arial, sans-serif;
+	background: #f2f2f2;
+	margin: 0;
+	padding: 40px;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.box {
+	width: 500px;
+	background: white;
+	padding: 25px;
+	border: 1px solid #ccc;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+label {
+	font-weight: bold;
+}
+
+input {
+	padding: 8px;
+	border: 1px solid #999;
+}
+
+#btn {
+	background: black;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.output {
+	margin-top: 25px;
+	padding-top: 15px;
+	border-top: 1px solid #ccc;
+}
+
+.output p {
+	margin: 10px 0;
+}

@@ -1,0 +1,41 @@
+{
+	"objective": "To become a skilled full stack developer and build useful software.",
+	"education": [
+		{
+			"degree": "Integrated MCA",
+			"institution": "Utkal University",
+			"year": "2024-2029",
+			"score": "7.5 SGPA"
+		},
+		{
+			"degree": "+2 Science",
+			"institution": "BJB College",
+			"year": "2021-2023",
+			"score": "69%"
+		}
+	],
+	"skills": {
+		"Languages": [
+			"C",
+			"Python",
+			"JavaScript"
+		],
+		"Tools": [
+			"Git",
+			"Vercel",
+			"Linux"
+		]
+	},
+	"projects": [
+		{
+			"title": "Prac-G Platform",
+			"description": "Lab platform for students.",
+			"technologies": "Next.js, Supabase"
+		},
+		{
+			"title": "Food Census",
+			"description": "Food preference web app.",
+			"technologies": "React, Supabase"
+		}
+	]
+}

@@ -1,0 +1,78 @@
+<!-- File Name: ajax_product_viewer.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>AJAX Product Viewer</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	<style>
+		#container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.card {
+			width: 200px;
+			border: 1px solid black;
+			padding: 10px;
+			text-align: center;
+		}
+
+		img {
+			width: 100%;
+			height: 150px;
+			object-fit: contain;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h2 align="center">Product Details</h2>
+
+	<div id="container"></div>
+
+	<script>
+
+		$.ajax({
+
+			url: "https://fakestoreapi.com/products",
+
+			success: function (data) {
+
+				let output = "";
+
+				for (let i = 0; i < 15; i++) {
+
+					output += `<div class="card">
+
+                    <img src="${data[i].image}">
+
+                    <h4>${data[i].title}</h4>
+
+                    <p>₹${data[i].price}</p>
+
+                    <p>${data[i].category}</p>
+
+                    </div>`;
+				}
+
+				$("#container").html(output);
+			},
+
+			error: function () {
+
+				alert("Data not loaded");
+			}
+
+		});
+
+	</script>
+
+</body>
+
+</html>
